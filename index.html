@@ -8,16 +8,312 @@
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/theme/league.css">
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<body>
+
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					History API & Routing
+				</section>
+
+				<section>
+					History
+				</section>
+
+				<section data-transition="convex">
+					<p>Properties</p>
+					<p class="fragment fade-up" style="color: rgb(103, 103, 255)">length</p>
+					<p class="fragment fade-up" style="color: rgb(103, 103, 255)">scrollRestoration</p>
+					<ul>
+						<li class="fragment">auto</li>
+						<li class="fragment">manual</li>
+					</ul>
+					<p class="fragment fade-up" style="color: rgb(103, 103, 255)">state</p>
+				</section>
+
+				<section data-transition="convex">
+					Methods
+				</section>
+
+				<section>
+					<section>back()</section>
+					<section>Example</section>
+					<section>
+						If we have:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 | << We are currently on this page
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+					<section>
+						After executing:
+						<pre>
+							<code>
+								history.back()
+							</code>
+						</pre>
+					</section>
+					<section>
+						We got:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 |
+								|        Page 2 | << We are now on this page
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>forward()</section>
+					<section>Example</section>
+					<section>
+						If we have:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 |
+								|        Page 2 | << We are currently on this page
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+					<section>
+						After executing:
+						<pre>
+							<code>
+								history.forward()
+							</code>
+						</pre>
+					</section>
+					<section>
+						We got:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 | << We are now on this page
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+
+
+				</section>
+
+				<section>
+					<section>go()</section>
+					<section>Example</section>
+					<section>
+						If we have:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 | << We are currently on this page
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+					<section>
+						After executing:
+						<pre>
+							<code>
+								history.go(-2)
+							</code>
+						</pre>
+					</section>
+					<section>
+						We got:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 |
+								|        Page 2 |
+								|        Page 1 | << We are now on this page
+								*/
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>pushState()</section>
+					<section>
+						<p class="fragment" style="color: rgb(136, 201, 245)">state</p>
+						<p class="fragment" style="color: rgb(136, 201, 245)">tite</p>
+						<p class="fragment" style="color: rgb(136, 201, 245)">url</p>
+					</section>
+					<section>Example</section>
+					<section>
+						If we have:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 | << We are currently on this page
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+					<section>
+						After executing:
+						<pre>
+							<code>
+								history.pushState(null, null, 'Page 4');
+							</code>
+						</pre>
+					</section>
+					<section>
+						We got:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 4 | << We are now on this page
+								|        Page 3 |
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>replaceState()</section>
+					<section>
+						<p class="fragment" style="color: rgb(136, 201, 245)">state</p>
+						<p class="fragment" style="color: rgb(136, 201, 245)">tite</p>
+						<p class="fragment" style="color: rgb(136, 201, 245)">url</p>
+					</section>
+					<section>Example</section>
+					<section>
+						If we have:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 3 | << We are currently on this page
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+					<section>
+						After executing:
+						<pre>
+							<code>
+								history.replaceState(null, null, 'Page 4');
+							</code>
+						</pre>
+					</section>
+					<section>
+						We got:
+						<pre>
+							<code>
+								/*
+								| History stack |
+								| ------------- |
+								|        Page 4 | << We are now on this page
+								|        Page 2 |
+								|        Page 1 |
+								*/
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section></section>
+
+				<!-- End History API -->
+
+				<section>Routing</section>
+
+				<section>
+					<pre>
+						<code>
+							https://myapp.com/users/4172
+							https://myapp.com/posts/programming-basics
+							https://myapp.com/account/profile/edit
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<section>Static routes</section>
+					<section>
+						<pre>
+							<code>
+								account/profile/edit
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>Dynamic routes</section>
+					<section>
+						<pre>
+							<code>
+								/users/5
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code>
+								^/users/(\w+)
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code>
+								/users/4
+								/users/1234
+								/users/38
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section></section>
+
 			</div>
 		</div>
 
@@ -33,7 +329,7 @@
 				hash: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
 			});
 		</script>
 	</body>
